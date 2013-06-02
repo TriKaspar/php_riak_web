@@ -1,0 +1,25 @@
+{
+    "name": "php_riak/php_riak_web",
+    "type": "library",
+    "description": "Phoriz demo project",
+    "homepage": "https://github.com/TriKaspar/php_riak_web",
+    "version": "0.1",
+    "license": "EPL-1.0",
+    "authors": [
+        {
+            "name": "Kaspar Bach Pedersen",
+            "email": "kasparp@me.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/TriKaspar/php_riak_web/issues"
+    },
+    "require": {
+        "php": ">=5.4.1",
+        "phoriz/phoriz": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "App": "" }
+    }
+}
