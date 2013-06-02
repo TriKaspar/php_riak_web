@@ -34,7 +34,6 @@ class Home extends ViewBinder {
      */
     public function onRequest($requestMethod)
     {
-        // TODO: Implement onRequest() method.
     }
 
     /**
@@ -43,6 +42,6 @@ class Home extends ViewBinder {
      */
     public function onRender($context)
     {
-        // TODO: Implement onRender() method.
+        echo $this->renderTemplate('Home.twig', $context);
     }
 }

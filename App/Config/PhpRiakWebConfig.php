@@ -37,7 +37,7 @@ class PhpRiakWebConfig extends AppConfig
         ]);
         $container->set(Constants::$RUN_MODE_KEY, Constants::$RUN_MODE_0_DEV);
         $container->set(Constants::$TWIG_PARAMS_KEY, [
-                'template.path' => dirname(dirname(__FILE__)).DS.'Views'.DS.'Templates',
+                'template.path' => dirname(dirname(__FILE__)).DS.'Views',
                 'cache.path' => dirname(dirname(__FILE__)).DS.'Cache'.DS.'Twig'
             ]
         );
