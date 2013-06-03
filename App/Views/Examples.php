@@ -10,10 +10,15 @@
  *    Kaspar Bach Pedersen - initial API and implementation and/or initial
  *                           documentation
  ******************************************************************************/
-namespace App;
-if (!defined('DS')) {
-    define("DS", DIRECTORY_SEPARATOR);
-    define("ROOT",dirname(dirname(dirname(__FILE__))));
-    define("APP",ROOT.DS."App");
+namespace App\Views;
+use \Phoriz\Annotations\Route;
+
+/**
+ * @Route("examples/")
+ */
+class Examples extends Base {
+    public function __construct()
+    {
+        parent::__construct('Examples', 1);
+    }
 }
-require ROOT.DS.'vendor'.DS.'autoload.php';

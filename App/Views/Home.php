@@ -15,13 +15,11 @@ namespace App\Views;
 
 use \Phoriz\Annotations\Route;
 use Phoriz\ViewBinding\TwigViewBinder;
-use Phoriz\ViewBinding\ViewBinder;
 
 /**
  * @Route("/")
  */
-class Home extends ViewBinder {
-    use TwigViewBinder;
+class Home extends Base {
 
     public function __construct()
     {

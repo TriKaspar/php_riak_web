@@ -10,10 +10,29 @@
  *    Kaspar Bach Pedersen - initial API and implementation and/or initial
  *                           documentation
  ******************************************************************************/
-namespace App;
-if (!defined('DS')) {
-    define("DS", DIRECTORY_SEPARATOR);
-    define("ROOT",dirname(dirname(dirname(__FILE__))));
-    define("APP",ROOT.DS."App");
+
+namespace App\Views;
+
+
+use Phoriz\ViewBinding\TwigViewBinder;
+use Phoriz\ViewBinding\ViewBinder;
+
+abstract class Base extends ViewBinder {
+    use TwigViewBinder;
+
+    /**
+     * @param \Phoriz\Routing\Method $requestMethod
+     * @return mixed
+     */
+    public function onRequest($requestMethod)
+    {
+    }
+
+    /**
+     * @param array $context
+     * @return string|null
+     */
+    public function onRender($context)
+    {
+    }
 }
-require ROOT.DS.'vendor'.DS.'autoload.php';
