@@ -27,14 +27,6 @@ class Home extends Base {
     }
 
     /**
-     * @param \Phoriz\Routing\Method $requestMethod
-     * @return mixed
-     */
-    public function onRequest($requestMethod)
-    {
-    }
-
-    /**
      * @param array $context
      * @return string|null
      */

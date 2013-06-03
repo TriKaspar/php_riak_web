@@ -14,6 +14,7 @@
 namespace App\Views;
 
 
+use App\Operations\GetTopMenu;
 use Phoriz\ViewBinding\TwigViewBinder;
 use Phoriz\ViewBinding\ViewBinder;
 
@@ -21,11 +22,12 @@ abstract class Base extends ViewBinder {
     use TwigViewBinder;
 
     /**
-     * @param \Phoriz\Routing\Method $requestMethod
+     * @param \Phoriz\Routing\Method $method
      * @return mixed
      */
-    public function onRequest($requestMethod)
+    public function onRequest($method)
     {
+        $this->operationQueue->addOperation(new GetTopMenu());
     }
 
     /**

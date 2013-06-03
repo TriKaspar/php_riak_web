@@ -16,13 +16,21 @@ use \Phoriz\Annotations\Route;
 
 /**
  * @Route("session/")
+ * @Route("session")
  */
 class Session extends Base {
 
     public function __construct()
     {
-        parent::__construct('Session module', 1);
+        parent::__construct('Session module', 2);
     }
 
-
+    /**
+     * @param array $context
+     * @return string|null
+     */
+    public function onRender($context)
+    {
+        echo $this->renderTemplate('Session.twig', $context);
+    }
 }
