@@ -1,11 +1,12 @@
 {% extends "Base.twig" %}
+{% import "Macros/Prettify.twig" as prettify %}
 {% block title %}Examples{% endblock %}
 {% block content %}
 <div class="span3">
     <div class="well sidebar-nav">
         <ul class="nav nav-list">
             <li class="nav-header">Examples</li>
-            <li class="active"><a href="/examples/">Basic connection</a></li>
+            <li class="active"><a href="/examples/">Basics</a></li>
             <li><a href="/examples/siblings/">Dealing with siblings</a></li>
             <li><a href="/examples/mapreduce/">Mapreduce</a></li>
             <li><a href="/examples/secondary_indexes/">Secondary indexes</a></li>
@@ -13,6 +14,11 @@
     </div><!--/.well -->
 </div><!--/span-->
 <div class="span9">
-    <h1>Examples</h1>
+    <h1>Basic connection</h1>
+    To create a connection to the Riak server you instanciate a RiakClient.
+    <pre class="prettyprint linenums">
+        {% include('Examples/Basic.twig') %}
+    </pre>
 </div>
+{{ prettify.prettify() }}
 {% endblock %}
