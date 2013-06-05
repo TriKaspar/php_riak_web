@@ -13,13 +13,11 @@
 
 namespace App\Views;
 
-
 use App\Operations\GetTopMenu;
 use Phoriz\ViewBinding\TwigViewBinder;
-use Phoriz\ViewBinding\ViewBinder;
 
-abstract class Base extends ViewBinder {
-    use TwigViewBinder;
+abstract class Base extends TwigViewBinder
+{
 
     /**
      * @param \Phoriz\Routing\Method $method
@@ -37,4 +35,5 @@ abstract class Base extends ViewBinder {
     public function onRender($context)
     {
     }
+
 }

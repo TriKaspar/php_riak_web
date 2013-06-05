@@ -14,9 +14,11 @@
 namespace App\Config;
 
 
+use App\Examples\ExampleLoader;
 use DI\Container;
 use Phoriz\AppConfig;
 use Phoriz\Constants;
+use Phoriz\Modules\TwigModule;
 
 class PhpRiakWebConfig extends AppConfig
 {
@@ -52,4 +54,15 @@ class PhpRiakWebConfig extends AppConfig
     {
         return 'App\Views';
     }
+
+    protected function postConfig(Container &$container)
+    {
+        parent::postConfig($container);
+
+        /** @var $twigModule TwigModule */
+        $twigModule = $container->get('Phoriz\Modules\TwigModule');
+        $twigModule->getTwigEnvironment()->addExtension(new ExampleLoader());
+    }
+
+
 }

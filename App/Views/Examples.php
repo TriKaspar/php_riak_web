@@ -19,7 +19,9 @@ use \Phoriz\Annotations\Route;
  * @Route("examples/basic")
  * @Route("examples/basic/")
  */
-class Examples extends Base {
+class Examples extends Base
+{
+
     public function __construct()
     {
         parent::__construct('Examples', 3);

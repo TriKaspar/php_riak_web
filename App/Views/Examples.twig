@@ -1,24 +1,13 @@
-{% extends "Base.twig" %}
-{% import "Macros/Prettify.twig" as prettify %}
+{% extends "BaseExample.twig" %}
 {% block title %}Examples{% endblock %}
-{% block content %}
-<div class="span3">
-    <div class="well sidebar-nav">
-        <ul class="nav nav-list">
-            <li class="nav-header">Examples</li>
-            <li class="active"><a href="/examples/">Basics</a></li>
-            <li><a href="/examples/siblings/">Dealing with siblings</a></li>
-            <li><a href="/examples/mapreduce/">Mapreduce</a></li>
-            <li><a href="/examples/secondary_indexes/">Secondary indexes</a></li>
-        </ul>
-    </div><!--/.well -->
-</div><!--/span-->
-<div class="span9">
+{% block example_content %}
+    {% spaceless %}
     <h1>Basic connection</h1>
-    To create a connection to the Riak server you instanciate a RiakClient.
-    <pre class="prettyprint linenums">
-        {% include('Examples/Basic.twig') %}
-    </pre>
-</div>
-{{ prettify.prettify() }}
+    <p>To create a connection to the Riak server you simply instantiate a RiakClient.<br />If no connection could be made a RiakConnectionException will be thrown.</p>
+    <pre class="prettyprint linenums lang-php">{{ example("Basic.ex") }}</pre>
+    <h3>Notes</h3>
+    <p>By default 20 persistent connections are allocated, this means that even though you create a new RiakClient on every request the underlying connection will be reused between requests.
+    <h3>References</h3>
+        <p>TODO</p>
+    {% endspaceless %}
 {% endblock %}

@@ -1,0 +1,26 @@
+{% extends "Base.twig" %}
+{% import "Macros/Prettify.twig" as prettify %}
+{% block header_add %}
+    <link href="/css/prettify.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block content %}
+    {% spaceless %}
+    <div class="span3">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+                <li class="nav-header">Examples</li>
+                <li class="active"><a href="/examples/">Basics</a></li>
+                <li><a href="/examples/siblings/">Dealing with siblings</a></li>
+                <li><a href="/examples/mapreduce/">Mapreduce</a></li>
+                <li><a href="/examples/secondary_indexes/">Secondary indexes</a></li>
+            </ul>
+        </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span9">
+        {% block example_content %}{% endblock %}
+    </div>
+    {% endspaceless %}
+
+<script src="/js/prettify/prettify.js" type="text/javascript"></script>
+{{ prettify.prettify() }}
+{% endblock %}
