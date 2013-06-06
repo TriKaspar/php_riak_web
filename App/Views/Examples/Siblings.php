@@ -19,7 +19,7 @@ use \Phoriz\Annotations\Route;
  * @Route("examples/siblings")
  * @Route("examples/siblings/")
  */
-class ExampleSiblings extends Base
+class Siblings extends Base
 {
 
 }
