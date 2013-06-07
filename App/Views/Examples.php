@@ -31,6 +31,6 @@ class Examples extends Base
 
     public function getSubViewFolders()
     {
-        return 'Examples';
+        return array('Examples');
     }
 }

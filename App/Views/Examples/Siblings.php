@@ -11,8 +11,9 @@
  *                           documentation
  ******************************************************************************/
 
-namespace App\Views;
+namespace App\Views\Examples;
 
+use App\Views\Base;
 use \Phoriz\Annotations\Route;
 
 /**
@@ -21,5 +22,8 @@ use \Phoriz\Annotations\Route;
  */
 class Siblings extends Base
 {
-
+    public function __construct()
+    {
+        parent::__construct('Handling siblings', 2);
+    }
 }

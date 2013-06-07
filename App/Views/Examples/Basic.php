@@ -11,7 +11,10 @@
  *                           documentation
  ******************************************************************************/
 
-namespace App\Views;
+namespace App\Views\Examples;
+
+use App\Views\Base;
+use \Phoriz\Annotations\Route;
 
 /**
  * @Route("examples/")

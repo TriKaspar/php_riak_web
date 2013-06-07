@@ -1,0 +1,11 @@
+{% extends "BaseExample.twig" %}
+{% block title %}Examples - Handling siblings{% endblock %}
+{% block example_content %}
+    {% spaceless %}
+        <h1>Handling siblings</h1>
+        <p>Siblings are an important feature in Riak, to understand siblings in Riak I recommend reading about <a href="http://docs.basho.com/riak/latest/references/appendices/concepts/Vector-Clocks/">Vector Clocks</a></p>
+        <pre class="prettyprint linenums lang-php">{{ example("Siblings.ex") }}</pre>
+        <h4>Note</h4>
+        <p>If allowMults is not set on the bucket, Riak will overwrite the current value instead of creating a sibling</p>
+    {% endspaceless %}
+{% endblock %}

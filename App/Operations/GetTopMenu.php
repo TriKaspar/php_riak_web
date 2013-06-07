@@ -12,6 +12,7 @@
  ******************************************************************************/
 namespace App\Operations;
 use Phoriz\Operation\Operation;
+use Phoriz\SiteMap\MenuItem;
 
 class GetTopMenu extends Operation
 {
@@ -23,18 +24,35 @@ class GetTopMenu extends Operation
 
     public function execute()
     {
-        $menus = $this->siteMap->buildRootMenu();
+        $menus = $this->siteMap->buildMenuFrom(null, 2);
+        var_dump($menus);
         $navigation = array();
         /** @var $menus \Phoriz\SiteMap\MenuItem[] */
         foreach ($menus as $menu) {
-            $href = $menu->getUrl(null, null);
-            $active = $menu->isActive();
-            $caption = $menu->getCaption();
-            if ($caption !== "Logout" && $caption !== "Login") {
-                $navigation[] = array('href' => $href, 'caption' => $caption, 'active' => $active);
-            }
+            $navigation[] = $this->contextForMenuItem($menu);
         }
         $context = array('navigation'=>$navigation);
+        var_dump($context);
         $this->fireContextEvent($context);
+    }
+
+    /**
+     * @param MenuItem $menu
+     */
+    private function contextForMenuItem($menu)
+    {
+        $current['active'] = $menu->isActive();
+        $current['caption'] = $menu->getCaption();
+        $href = $menu->getUrl(null, null);
+        if (isset($href) && strlen($href) > 0) {
+            $current['href'] = $href;
+        }
+        $childs = $menu->getChildNodes();
+        if (is_array($childs) && count($childs) > 0 ) {
+            foreach ($childs as $child) {
+                $current['children'][] = $this->contextForMenuItem($child);
+            }
+        }
+        return $current;
     }
 }

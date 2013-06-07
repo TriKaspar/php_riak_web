@@ -11,8 +11,9 @@
   *                           documentation
   ******************************************************************************/
 
-namespace App\Views;
+namespace App\Views\Examples;
 
+use App\Views\Base;
 use \Phoriz\Annotations\Route;
 
 /**
@@ -23,7 +24,7 @@ class BucketProperties extends Base
 {
     public function __construct()
     {
-        parent::__construct('Bucket properties', 3);
+        parent::__construct('Bucket properties', 1);
     }
 
     /**
