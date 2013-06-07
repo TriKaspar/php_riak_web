@@ -25,14 +25,12 @@ class GetTopMenu extends Operation
     public function execute()
     {
         $menus = $this->siteMap->buildMenuFrom(null, 2);
-        var_dump($menus);
         $navigation = array();
         /** @var $menus \Phoriz\SiteMap\MenuItem[] */
         foreach ($menus as $menu) {
             $navigation[] = $this->contextForMenuItem($menu);
         }
         $context = array('navigation'=>$navigation);
-        var_dump($context);
         $this->fireContextEvent($context);
     }
 
@@ -44,11 +42,15 @@ class GetTopMenu extends Operation
         $current['active'] = $menu->isActive();
         $current['caption'] = $menu->getCaption();
         $href = $menu->getUrl(null, null);
+        $childs = $menu->getChildNodes();
+        $hasChildren = is_array($childs) && count($childs) > 0;
         if (isset($href) && strlen($href) > 0) {
             $current['href'] = $href;
+        } else if ($hasChildren) {
+            $current['dropdown'] = true;
         }
-        $childs = $menu->getChildNodes();
-        if (is_array($childs) && count($childs) > 0 ) {
+
+        if ($hasChildren) {
             foreach ($childs as $child) {
                 $current['children'][] = $this->contextForMenuItem($child);
             }

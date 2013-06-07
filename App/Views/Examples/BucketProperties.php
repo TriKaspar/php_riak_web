@@ -33,6 +33,6 @@ class BucketProperties extends Base
      */
     public function onRender($context)
     {
-        echo $this->renderTemplate('BucketProperties.twig', $context);
+        echo $this->renderTemplate('Examples/BucketProperties.twig', $context);
     }
 }

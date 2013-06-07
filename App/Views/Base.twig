@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le styles -->
+    <link href="/css/phpriak.css" rel="stylesheet">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         body {
@@ -19,7 +19,7 @@
     {% block header_add %}{% endblock %}
 </head>
 <body>
-
+{% spaceless %}
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
@@ -32,10 +32,21 @@
             <div class="nav-collapse">
                 <ul class="nav">
                     {% for item in navigation %}
-                        {% if item.active %}
-                            <li class="active"><a href="{{ item.href }}">{{ item.caption }}</a></li>
+                        {% if item.dropdown %}
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ item.caption }}<b class="caret"></b></a>
+                                <ul class="dropdown-menu" id="swatch-menu">
+                                {% for child in item.children %}
+                                    <li><a href="{{ child.href }}">{{ child.caption }}</a></li>
+                                {% endfor %}
+                                </ul>
+                            </li>
                         {% else %}
-                            <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+                            {% if item.active %}
+                                <li class="active"><a href="{{ item.href }}">{{ item.caption }}</a></li>
+                            {% else %}
+                                <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
                 </ul>
@@ -46,7 +57,8 @@
 <div class="container-fluid">
     {% block content %}{% endblock %}
 </div>
-
 <script src="/js/bootstrap.min.js"></script>
+<a href="https://github.com/TriKaspar" id="github"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+{% endspaceless %}
 </body>
 </html>

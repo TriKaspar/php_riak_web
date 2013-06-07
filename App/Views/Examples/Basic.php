@@ -35,6 +35,6 @@ class Basic extends Base
      */
     public function onRender($context)
     {
-        echo $this->renderTemplate('Basic.twig', $context);
+        echo $this->renderTemplate('Examples/Basic.twig', $context);
     }
 }

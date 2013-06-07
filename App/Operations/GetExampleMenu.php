@@ -1,6 +1,6 @@
 <?php
  /******************************************************************************
- * Copyright (c) 05/06/13 Kaspar Bach Pedersen.
+ * Copyright (c) 07/06/13 Kaspar Bach Pedersen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,28 +11,20 @@
  *                           documentation
  ******************************************************************************/
 
-namespace App\Views\Examples;
+namespace App\Operations;
 
-use App\Views\Base;
-use \Phoriz\Annotations\Route;
 
-/**
- * @Route("examples/siblings")
- * @Route("examples/siblings/")
- */
-class Siblings extends Base
+use Phoriz\Operation\Operation;
+
+class GetExampleMenu extends Operation
 {
     public function __construct()
     {
-        parent::__construct('Handling siblings', 2);
+        parent::__construct('GetExampleMenu');
     }
 
-    /**
-     * @param array $context
-     * @return string|null
-     */
-    public function onRender($context)
+    public function execute()
     {
-        echo $this->renderTemplate('Examples/Siblings.twig', $context);
+        // TODO
     }
 }
