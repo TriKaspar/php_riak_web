@@ -1,6 +1,26 @@
 {% extends "Base.twig" %}
 {% block title %}Riak PHP session module{% endblock %}
 {% block content %}
-    <h1>Riak PHP session module</h1>
-    TODO
+<h1>Riak PHP session module</h1>
+<p>Php_riak includes a session module that can replace the default PHP session handler.</p>
+<h3>Enabling</h3>
+<p>Php_riak extension should be installed, other than that all that is needed is setting the following in your php.ini</p>
+<pre class="prettyprint">
+    session.save_handler=riak
+    session.save_path=proto://HOST:PORT/SESSIONBUCKET
+</pre>
+<p>You can specify w, dw, pw, r, rw and pr values by adding them to the session.save_path. For instance to use a local riak with w and r values of 2:</p>
+<pre class="prettyprint">
+    session.save_path=proto://127.0.0.1:8087/session?w=2&r=2
+</pre>
+<h3>Bucket properties</h3>
+<p>The session handles does NOT set any bucket properties.<br />Bucket properties should either be set in app.config or applied manually on the bucket before using this session handler, conflicting writes are not handled so please disable siblings on the bucket. Recommended bucket properties:</p>
+<pre class="prettyprint">
+    n_val=3
+    allow_mult=false
+    last_write_wins=false
+</pre>
+<p>The session handler does not implement garbage collection, use riak´s key-expire setting instead See <a href="http://docs.basho.com/riak/1.3.1/tutorials/choosing-a-backend/Bitcask/">http://docs.basho.com/riak/1.3.1/tutorials/choosing-a-backend/Bitcask/</a> for betails on how to enable automatic key expire.</p>
+<h3>Important</h3>
+There is no locking builtin to this session handler, this can cause problems if you have multiple requests writing to the same session, in most cases this is not an issue, if it is you should make your own Php session handler that is capable of merging conflicting session writes.</p>
 {% endblock %}

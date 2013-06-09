@@ -1,6 +1,25 @@
 {% extends "Base.twig" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-    <h1>Installation</h1>
-    TODO
+<h1>Installation</h1>
+php_riak extenstion is not in PECL yet, so you need to build the module by hand.<br />
+<h3>Building - Linux/Mac</h3>
+First make sure you have Git and PHP installed.<br />
+Then get the latest source from GitHub:
+<pre class="prettyprint">
+git pull https://github.com/TriKaspar/php_riak.git
+cd php_riak
+git submodule init
+git submodule update
+</pre>
+Now compile and install like this:
+<pre class="prettyprint">
+phpize
+./configure
+sudo make install
+</pre>
+<p>Module is now installed but it needs to be added to the appropriate php.ini as well, this can be done by adding the following line to your php.ini</p>
+<pre class="prettyprint">
+extension=riak.so
+</pre>
 {% endblock %}

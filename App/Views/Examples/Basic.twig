@@ -7,7 +7,7 @@
     <pre class="prettyprint linenums lang-php">{{ example("Basic.ex") }}</pre>
     <p>By default 20 persistent connections are allocated, this means that even though you create a new RiakClient on every request the underlying connection will be reused between requests.
     <h1>Simple get/put</h1>
-        <p>Since all objects in Riak are stored in a bucket you start by creating a RiakBucket and then the object that should be stored.</p>
+        <p>Since all objects in Riak are stored in buckets you start by creating a RiakBucket and then the object that should be stored.</p>
     <pre class="prettyprint linenums lang-php">{{ example("GetPut.ex") }}</pre>
     {% endspaceless %}
 {% endblock %}
