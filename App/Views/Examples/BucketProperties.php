@@ -13,14 +13,13 @@
 
 namespace App\Views\Examples;
 
-use App\Views\Base;
 use \Phoriz\Annotations\Route;
 
 /**
  * @Route("examples/bucket_properties")
  * @Route("examples/bucket_properties/")
  */
-class BucketProperties extends Base
+class BucketProperties extends BaseExample
 {
     public function __construct()
     {

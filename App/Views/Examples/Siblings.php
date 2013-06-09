@@ -13,14 +13,13 @@
 
 namespace App\Views\Examples;
 
-use App\Views\Base;
 use \Phoriz\Annotations\Route;
 
 /**
  * @Route("examples/siblings")
  * @Route("examples/siblings/")
  */
-class Siblings extends Base
+class Siblings extends BaseExample
 {
     public function __construct()
     {

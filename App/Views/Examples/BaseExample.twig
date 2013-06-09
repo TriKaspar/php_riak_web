@@ -9,10 +9,13 @@
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
                 <li class="nav-header">Examples</li>
-                <li class="active"><a href="/examples/">Basics</a></li>
-                <li><a href="/examples/siblings/">Dealing with siblings</a></li>
-                <li><a href="/examples/mapreduce/">Mapreduce</a></li>
-                <li><a href="/examples/secondary_indexes/">Secondary indexes</a></li>
+                {% for item in example_menu %}
+                    {% if item.active %}
+                        <li class="active"><a href="{{ item.href }}">{{ item.caption }}</a></li>
+                    {% else %}
+                        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+                    {% endif %}
+                {% endfor %}
             </ul>
         </div><!--/.well -->
     </div><!--/span-->

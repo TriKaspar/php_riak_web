@@ -15,9 +15,12 @@ namespace App\Operations;
 
 
 use Phoriz\Operation\Operation;
+use Phoriz\SiteMap\MenuItem;
+use Phoriz\ViewBinding\ViewBinder;
 
 class GetExampleMenu extends Operation
 {
+
     public function __construct()
     {
         parent::__construct('GetExampleMenu');
@@ -25,6 +28,29 @@ class GetExampleMenu extends Operation
 
     public function execute()
     {
-        // TODO
+        $menus = $this->siteMap->buildMenuFrom(null, 2);
+        foreach ($menus as $menu) {
+            $exmenu = array();
+            $exnode = $menu->findNodeNamed("Examples");
+            if (isset($exnode)) {
+                foreach ($exnode->getChildNodes() as $ex) {
+                    $exmenu[] = $this->contextForMenuItem($ex);
+                }
+                $context = array('example_menu'=>$exmenu);
+                $this->fireContextEvent($context);
+                break;
+            }
+        }
+    }
+
+    /**
+     * @param MenuItem $menu
+     */
+    private function contextForMenuItem($menu)
+    {
+        $current['active'] = $menu->isActive();
+        $current['caption'] = $menu->getCaption();
+        $current['href'] = $menu->getUrl(null, null);
+        return $current;
     }
 }

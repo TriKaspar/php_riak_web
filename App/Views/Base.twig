@@ -33,7 +33,11 @@
                 <ul class="nav">
                     {% for item in navigation %}
                         {% if item.dropdown %}
-                            <li class="dropdown">
+                            {% if item.active %}
+                                <li class="dropdown active">
+                            {% else %}
+                                <li class="dropdown">
+                            {% endif %}
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ item.caption }}<b class="caret"></b></a>
                                 <ul class="dropdown-menu" id="swatch-menu">
                                 {% for child in item.children %}
@@ -57,8 +61,28 @@
 <div class="container-fluid">
     {% block content %}{% endblock %}
 </div>
-<script src="/js/bootstrap.min.js"></script>
-<a href="https://github.com/TriKaspar" id="github"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 {% endspaceless %}
+<div class="container-fluid">
+    <hr />
+    <footer id="footer">
+        <p class="pull-right"><a href="#top">Back to top</a></p>
+        <div class="links">
+            <a href="https://github.com/TriKaspar">GitHub Source</a> -
+            <a href="https://github.com/TriKaspar/php_riak/issues">Issues</a>
+        </div>
+        Created and maintained by <a href="mailto:kasparp@me.com">Kaspar Bach Pedersen</a>.<br />
+        Built using <a href="http://twitter.github.io/bootstrap/">Twitter bootstrap</a>, <a href="http://bootswatch.com/cerulean/">Cerulean theme</a> and <a href="https://bitbucket.org/kasparp/phoriz">Phoriz framework</a>.
+    </footer>
+</div>
+<script src="/js/bootstrap.min.js"></script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41583897-1', 'bachpedersen.dk');
+    ga('send', 'pageview');
+</script>
 </body>
 </html>

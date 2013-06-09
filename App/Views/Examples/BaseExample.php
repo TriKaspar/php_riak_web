@@ -1,6 +1,6 @@
 <?php
  /******************************************************************************
- * Copyright (c) 06/06/13 Kaspar Bach Pedersen.
+ * Copyright (c) 08/06/13 Kaspar Bach Pedersen.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,27 +13,26 @@
 
 namespace App\Views\Examples;
 
-use \Phoriz\Annotations\Route;
+use App\Operations\GetExampleMenu;
+use App\Views\Base;
 
-/**
- * @Route("examples/")
- * @Route("examples")
- * @Route("examples/basic")
- * @Route("examples/basic/")
- */
-class Basic extends BaseExample
+abstract class BaseExample extends Base
 {
-    public function __construct()
+    /**
+     * @param \Phoriz\Routing\Method $method
+     * @return mixed
+     */
+    public function onRequest($method)
     {
-        parent::__construct('Basics', 0);
+        parent::onRequest($method);
+        $this->operationQueue->addOperation(new GetExampleMenu());
     }
 
     /**
      * @param array $context
      * @return string|null
-     */
+
     public function onRender($context)
     {
-        echo $this->renderTemplate('Examples/Basic.twig', $context);
-    }
+    }*/
 }
