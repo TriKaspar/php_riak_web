@@ -16,8 +16,8 @@ namespace App\Views\Examples;
 use \Phoriz\Annotations\Route;
 
 /**
- * @Route("examples/bucket_properties")
- * @Route("examples/bucket_properties/")
+ * @Route("examples/bucket-properties")
+ * @Route("examples/bucket-properties/")
  */
 class BucketProperties extends BaseExample
 {

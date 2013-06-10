@@ -35,7 +35,7 @@ try {
     $data = "";
     foreach ($ex->objects as $sibling) {
         // We just add their data together
-        $data .= $sibling->data;
+        $data .= '-'.$sibling->data;
     }
     $obj->data = $data;
 
