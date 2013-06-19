@@ -15,7 +15,7 @@ try {
         // remember secondary index should always end on _int or _bin
         $obj->indexes = array('num_int' => $i, 'text_bin' => "text$i");
         // Store object
-        $bucket->putObject($obj);
+        $bucket->put($obj);
     }
 
     // Query for all objects where num_int = 1

@@ -10,19 +10,19 @@ $bucket->applyProperties($newProps);
 // Create an object with some data
 $obj = new RiakObject('key');
 $obj->data = 'some data';
-$bucket->putObject($obj);
+$bucket->put($obj);
 
 // Now create a new object on same key, without reading the value first
 $obj = new RiakObject('key');
 $obj->data = 'some other data';
-$bucket->putObject($obj);
+$bucket->put($obj);
 
 // Now Riak has created a sibling since we have written 2 different values
 // to the same key.
 try {
     // We now try to get the object, this will trigger an
     // RiakConflictedObjectException
-    $obj = $bucket->getObject('key');
+    $obj = $bucket->get('key');
 } catch (RiakConflictedObjectException $ex) {
     // We should resolve the conflict by merging the siblings
 
@@ -41,12 +41,12 @@ try {
 
     // Store the object, since we used the newest vclock the conflict
     // should be resolved.
-    $bucket->putObject($obj);
+    $bucket->put($obj);
 
     // The object could be conflicted state once more if another request has
     // modified it in between the read and put above.
     // But in this example we know no one else is writing to it.
 }
 
-$obj = $bucket->getObject('key');
+$obj = $bucket->get('key');
 echo "Merged object data: " . $obj->data . PHP_EOL;
