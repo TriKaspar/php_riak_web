@@ -3,7 +3,8 @@
 {% block example_content %}
     {% spaceless %}
         <h1>Modifying bucket properties</h1>
-        <p>Modifying bucket properties are easy, create a RiakBucketProperties object with the properties and call applyProperties on a RiakBucket. <br />In current Riak version it is only possible to set n-value and allowMults through the protobuff interface.</p>
-        <pre class="prettyprint linenums lang-php">{{ example("BucketProperties.ex") }}</pre>
+        <p>Modifying bucket properties are easy, create a \Riak\BucketPropertyList object with the properties and call setPropertyList on a \Riak\Bucket. <br />
+            In current Riak version it is only possible to set n-value and allowMults through the protobuff interface.</p>
+        <pre class="prettyprint linenums lang-php">{{ example("BucketProperties.ex.php") }}</pre>
     {% endspaceless %}
 {% endblock %}

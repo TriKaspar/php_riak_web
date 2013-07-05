@@ -3,11 +3,11 @@
 {% block example_content %}
     {% spaceless %}
     <h1>Basic connection</h1>
-    <p>To create a connection to Riak you simply instantiate a RiakClient.<br />If no connection could be made a RiakConnectionException will be thrown.</p>
-    <pre class="prettyprint linenums lang-php">{{ example("Basic.ex") }}</pre>
-    <p>By default 20 persistent connections are allocated, this means that even though you create a new RiakClient on every request the underlying connection will be reused between requests.
+    <p>To create a connection to Riak you simply instantiate a \Riak\Connection.<br />If no connection could be made a \Riak\Exception\ConnectionException will be thrown.</p>
+    <pre class="prettyprint linenums lang-php">{{ example("Basic.ex.php") }}</pre>
+    <p>By default 20 persistent connections are allocated, this means that even though you create a new \Riak\Connection on every request the underlying connection will be reused between requests.
     <h1>Simple get/put</h1>
-        <p>Since all objects in Riak are stored in buckets you start by creating a RiakBucket and then the object that should be stored.</p>
-    <pre class="prettyprint linenums lang-php">{{ example("GetPut.ex") }}</pre>
+        <p>Since all objects in Riak are stored in buckets you start by creating a \Riak\Bucket and then you can call put to store an object.</p>
+    <pre class="prettyprint linenums lang-php">{{ example("GetPut.ex.php") }}</pre>
     {% endspaceless %}
 {% endblock %}

@@ -3,10 +3,10 @@
 {% block example_content %}
     {% spaceless %}
         <h1>Secondary Indexes</h1>
-        <p>Secondary indexes can be added to objects by setting the RiakObject indexes property to an array (line 16 in the example below).</p>
-        <p>Quering secondary indexes is also very easy, simply call the indexQuery function on an RiakBucket object (line 22 & 27)</p>
-        <pre class="prettyprint linenums lang-php">{{ example("SecondaryIndexes.ex") }}</pre>
+        <p>Secondary indexes can be added to \Riak\Object by calling addIndex (line 16 & 17 in the example below).</p>
+        <p>Querying secondary indexes is also very easy, simply call the index function on an \Riak\Bucket object (line 23 & 28)</p>
+        <pre class="prettyprint linenums lang-php">{{ example("SecondaryIndexes.ex.php") }}</pre>
         <h4>Output</h4>
-        <pre class="prettyprint linenums lang-bash">{{ example("SecondaryIndexes.out.ex") }}</pre>
+        <pre class="prettyprint linenums lang-bash">{{ example("SecondaryIndexes.out.ex.php") }}</pre>
     {% endspaceless %}
 {% endblock %}

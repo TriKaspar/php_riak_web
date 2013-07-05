@@ -2,8 +2,13 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <h1>Installation</h1>
-php_riak extenstion is not in PECL yet, so you need to build the module by hand.<br />
-<h3>Building - Linux/Mac</h3>
+<h3>The easy way - PECL</h3>
+php_riak is now in PECL, if you have PEAR/PEAR installed all you need to do is the following:
+<pre class="prettyprint">
+pecl install riak-beta
+</pre>
+If you do now have PEAR/PECL installed, go to <a href="http://pear.php.net/manual/en/installation.php">Installation (PEAR)</a> for instructsion, or build php_riak by hand.
+<h3>The hard way - Building Linux/Mac</h3>
 First make sure you have Git and PHP installed.<br />
 Then get the latest source from GitHub:
 <pre class="prettyprint">
