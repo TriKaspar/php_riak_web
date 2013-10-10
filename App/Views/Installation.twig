@@ -2,13 +2,26 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <h1>Installation</h1>
-<h3>The easy way - PECL</h3>
+<h3>Mac - Using Homebrew</h3>
+On mac you can install everything using homebrew, first you need to tap homebrew/dupes and josegonzalez/homebrew-php like this
+<pre class="prettyprint">
+brew tap homebrew/dupes
+brew tap josegonzalez/homebrew-php
+</pre>
+Then to install php_riak just brew php53-riak, php54-riak or php55-riak like this:
+<pre class="prettyprint">
+brew install php55-riak
+</pre>
+<h3>Linux/Mac - Using PECL</h3>
 php_riak is now in PECL, if you have PEAR/PEAR installed all you need to do is the following:
 <pre class="prettyprint">
 pecl install riak-beta
 </pre>
-If you do now have PEAR/PECL installed, go to <a href="http://pear.php.net/manual/en/installation.php">Installation (PEAR)</a> for instructsion, or build php_riak by hand.
-<h3>The hard way - Building Linux/Mac</h3>
+    If you do now have PEAR/PECL installed, go to <a href="http://pear.php.net/manual/en/installation.php">Installation (PEAR)</a> for instructsion, or build php_riak by hand.
+<h3>Windows - Binaries</h3>
+PECL automatically compiles windows binaries, which means you can download ready build extension DLLs from <a href="http://pecl.php.net/package/riak/0.6.0/windows">http://pecl.php.net/package/riak/0.6.0/windows</a> choose the DLL that matches your php build.<br />
+Remember to add the DLL to your php.ini as well.<br /><br />
+<h3>Building from source (Linux/Mac)</h3>
 First make sure you have Git and PHP installed.<br />
 Then get the latest source from GitHub:
 <pre class="prettyprint">
