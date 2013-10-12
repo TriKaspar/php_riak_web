@@ -1,0 +1,13 @@
+{% extends "Examples/BaseExample.twig" %}
+{% block title %}Examples - Search{% endblock %}
+{% block example_content %}
+    {% spaceless %}
+        <h1>Riak Search</h1>
+        <p>Riak have builtin full text search which can be very usefull, I will only demonstrate how php_riak client can query Riak search not how it works in general, to get the full picture jump to the <a href="http://docs.basho.com/riak/latest/dev/using/search/">riakdocs.</a></p>
+        <p>The example below demonstrates how enable search on a bucket and how to perform a search.</p>
+        <pre class="prettyprint linenums lang-php">{{ example("Search.ex.php") }}</pre>
+        <h4>Output</h4>
+        <pre class="prettyprint linenums lang-bash">{{ example("Search.out.ex.php") }}</pre>
+        <p>Note: Riak search need to be enabled in the Riak configuration.</p>
+    {% endspaceless %}
+{% endblock %}
