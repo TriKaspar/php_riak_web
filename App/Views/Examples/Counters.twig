@@ -1,0 +1,14 @@
+{% extends "Examples/BaseExample.twig" %}
+{% block title %}Examples - Counters{% endblock %}
+{% block example_content %}
+    {% spaceless %}
+        <h1>Riak counter</h1>
+        <p>In Riak 1.4 basho added support CRDT counters (<a href="http://docs.basho.com/riak/latest/dev/references/http/counters/">basho counter documentation</a>)</p>
+        <p>Counters are very simple to use, and they are very useful for a lot of use cases.</p>
+        <p>The example below shows how to get and modify counters</p>
+        <pre class="prettyprint linenums lang-php">{{ example("Counters.ex.php") }}</pre>
+        <h4>Output</h4>
+        <pre class="prettyprint linenums lang-bash">{{ example("Counters.out.ex.php") }}</pre>
+        <p>Note: Counters requires allow mult to be enabled on the bucket.</p>
+    {% endspaceless %}
+{% endblock %}
