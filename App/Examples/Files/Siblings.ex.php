@@ -1,56 +1,57 @@
 <?php
+// Make sure allowMult = true on your bucket
+// Create a conflict resolver
+class SimpleMergeResolver implements \Riak\Output\ConflictResolver
+{
 
+    /**
+     * Resolve or merge the conflicting objects and return one that should be store back into riak.
+     * @param \Riak\ObjectList $objects
+     * @return Object|null
+     */
+    public function resolve(\Riak\ObjectList $objects)
+    {
+        $result = null;
+        $mergedContent = "";
+        foreach ($objects as $object) {
+            if (!$object->isDeleted()) {
+                if (is_null($result)) {
+// We just take the first object that is not deleted and use as base for our result
+// that way we don't need to create a new object and copy the vclock, metadata and indexes etc.
+                    $result = $object;
+                }
+                $mergedContent .= '-'.$object->getContent();
+            }
+        }
+// If we actually found a result, set the content to the merged value.
+        if (isset($result)) {
+            $result->setContent($mergedContent);
+        }
+        return $result;
+    }
+}
 $connection = new \Riak\Connection('localhost', 8087);
 $bucket = new \Riak\Bucket($connection, 'siblings');
-
-// Make sure we have siblings enabled
-$newProps = new \Riak\BucketPropertyList(3, true);
-$bucket->setPropertyList($newProps);
+// Set our resolver on the bucket, to have it invoked automatically on conflicts
+$bucket->setConflictResolver(new SimpleMergeResolver());
 
 // Create an object with some data
 $obj = new \Riak\Object('conflicting');
 $obj->setContent('some data');
 $bucket->put($obj);
-
 // Now create a new object on same key, without reading the value first
 $obj = new \Riak\Object('conflicting');
 $obj->setContent('some other data');
 $bucket->put($obj);
-// Now Riak has created a sibling since we have written 2 different values
-// to the same key.
-try {
-    // We now get the object
-    $response = $bucket->get('conflicting');
-    if ($response->hasSiblings()) {
-        echo "We have conflicting writes".PHP_EOL;
 
-        // We should resolve the conflict by merging the siblings
-        $objects = $response->getObjectList();
-        $response->getVClock();
-        $mergedContent = "";
-        foreach ($objects as $object) {
-            // Simple resolve by appending all content together
-            $mergedContent .= '-'.$object->getContent();
-        }
-        // Create a new object that will hold our merged content
-        $mergedObject = new \Riak\Object('conflicting');
-        $mergedObject->setContent($mergedContent);
 
-        // Create a PutInput.
-        $putInput = new \Riak\Input\PutInput();
-        // By setting the vclock to the one we got from the get() operation
-        // riak will know that we resolved the conflict.
-        $putInput->setVClock($response->getVClock());
-        // We now pass the PutInput to the put function.
-        $bucket->put($mergedObject, $putInput);
-    }
-} catch (\Riak\Exception\RiakException $ex) {
-    echo $ex->getMessage().PHP_EOL;
-}
+$getOutput = $bucket->get('conflicting');
+// To make sure the resolver is called you should use the getObject on the output
+$resolvedObject = $getOutput->getObject();
+// Save back the object
+$bucket->put($resolvedObject);
 
-$response = $bucket->get('conflicting');
-if ($response->hasObject() && !$response->hasSiblings()) {
-    echo "Conflict resolved!".PHP_EOL;
-    $obj = $response->getFirstObject();
-    echo "Merged object data: " . $obj->getContent() . PHP_EOL;
-}
+// Read back and ensure the sibling is now gone.
+$getOutput = $bucket->get('conflicting');
+echo var_export($getOutput->hasSiblings(), true) . PHP_EOL;
+echo var_export($getOutput->getObject()->getContent(), true) . PHP_EOL;

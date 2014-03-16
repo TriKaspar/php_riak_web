@@ -4,6 +4,7 @@
     {% spaceless %}
         <h1>Handling siblings</h1>
         <p>Siblings are an important feature in Riak, if you are unsure how they work I recommend reading about <a href="http://docs.basho.com/riak/latest/references/appendices/concepts/Vector-Clocks/">Vector Clocks</a></p>
+        <p>To deal with the siblings php_riak have a Riak\Output\ConflictResolver interface, you implement this interface and tell the \Riak\Bucket object to use this resolver when it encounters conflicts, below is a simple example that will just merge the content of the siblings.</p>
         <pre class="prettyprint linenums lang-php">{{ example("Siblings.ex.php") }}</pre>
         <h4>Output</h4>
         <pre class="prettyprint linenums lang-bash">{{ example("Siblings.out.ex.php") }}</pre>
